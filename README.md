@@ -145,7 +145,7 @@ This provides a hardware-in-the-loop representation of resource constraints with
 # Experimental Results
 
 The final test sequence contained 12 original LASCO images, producing 11 frame-to-frame differences.
-
+```
 **Retention Decisions**
 Retention Mode	Number
 FULL	           1
@@ -180,7 +180,7 @@ Using the project's confidence threshold:
 - Decision records      : 11/11 transferred
 - Automatic downlink    : Enabled
 - Downlink release      : 4 slots
-
+```
  # Technologies Used
 - Python
 - NumPy
