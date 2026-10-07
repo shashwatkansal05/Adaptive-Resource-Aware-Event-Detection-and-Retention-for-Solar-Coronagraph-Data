@@ -1,0 +1,1 @@
+# Adaptive-Resource-Aware-Event-Detection-and-Retention-for-Solar-Coronagraph-Data
