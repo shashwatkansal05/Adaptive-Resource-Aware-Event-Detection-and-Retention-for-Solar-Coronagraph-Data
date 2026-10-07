@@ -111,11 +111,12 @@ Retention Decision
 The system can select one of four retention modes:
 
 # Mode	Purpose
+```
 FULL-	Preserve the complete observation
 REDUCED-	Preserve a reduced representation
 SUMMARY-	Preserve lightweight information
 DROP-	Discard low-value observation
-
+```
 This allows the system to adapt its data-retention behavior as available storage decreases.
 
 ESP32 Hardware-in-the-Loop
