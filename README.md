@@ -66,3 +66,129 @@ To design and evaluate a resource-aware system that can:
                            │
                            ▼
               Storage / Downlink Model
+```
+# Dataset
+
+The project uses real observations from the Large Angle and Spectrometric Coronagraph (LASCO) instrument aboard the SOHO (Solar and Heliospheric Observatory) spacecraft.
+
+LASCO observes the solar corona by blocking the bright solar disk, allowing structures such as coronal mass ejections (CMEs) and other large-scale coronal features to be observed.
+
+The project uses LASCO imagery as the actual input data.
+
+- Dataset: SOHO/LASCO observations
+
+# Processing Pipeline
+1. Running-Difference Analysis
+
+Consecutive LASCO images are converted to grayscale and compared pixel-by-pixel.
+
+For consecutive frames:
+
+Difference = |Current Frame - Previous Frame|
+
+This highlights changes occurring between observations.
+
+2. Confidence Estimation
+
+The running-difference image is analyzed to estimate the amount of significant image change.
+
+The resulting score is normalized to a range suitable for the retention controller.
+
+The score represents the amount of detected change and is used as a decision signal.
+
+The confidence value in this project should not be interpreted as a scientifically validated probability of a solar event.
+
+3. Adaptive Retention
+
+The controller considers both:
+```text
+Observation Confidence
+        +
+Current Storage Pressure
+        ↓
+Retention Decision
+```
+The system can select one of four retention modes:
+
+# Mode	Purpose
+FULL-	Preserve the complete observation
+REDUCED-	Preserve a reduced representation
+SUMMARY-	Preserve lightweight information
+DROP-	Discard low-value observation
+
+This allows the system to adapt its data-retention behavior as available storage decreases.
+
+ESP32 Hardware-in-the-Loop
+
+The retention controller communicates with an ESP32 through a serial UART connection.
+```text
+Linux / Python Controller
+          │
+          │ UART
+          │ 115200 baud
+          ▼
+        ESP32
+          │
+          ▼
+ Simulated Storage State
+```
+The ESP32 maintains a simulated storage capacity of:
+
+Maximum storage = 10 slots
+
+Different retention modes consume different amounts of storage.
+
+A simulated downlink event periodically releases storage space, allowing the system to continue accepting new observations.
+
+This provides a hardware-in-the-loop representation of resource constraints without requiring actual spacecraft storage or communication hardware.
+
+# Experimental Results
+
+The final test sequence contained 12 original LASCO images, producing 11 frame-to-frame differences.
+
+**Retention Decisions**
+Retention Mode	Number
+FULL	           1
+REDUCED	         2
+SUMMARY          4
+DROP	           4
+Total	           11
+
+**Simulated Storage**
+Metric	              Result
+Baseline storage cost	  33
+Adaptive storage cost	  11
+Simulated reduction	   66.7%
+
+**Physical File Storage**
+Metric	Result
+Original PNG size	4.082 MB
+Retained data size	0.518 MB
+Physical reduction	87.3%
+Reduction ratio	7.89×
+
+**High-Confidence Preservation**
+
+Using the project's confidence threshold:
+
+- High-confidence observations = 4
+- Preserved observations       = 4
+- Preservation rate            = 100%
+- ESP32 Integration
+- UART baud rate        : 115200
+- Storage capacity      : 10 slots
+- Decision records      : 11/11 transferred
+- Automatic downlink    : Enabled
+- Downlink release      : 4 slots
+
+ # Technologies Used
+- Python
+- NumPy
+- PIL / Pillow
+- CSV-based data processing
+- Linux
+- ESP32
+- Arduino
+- UART / Serial Communication
+- Image Processing
+- Resource-aware Decision Making
