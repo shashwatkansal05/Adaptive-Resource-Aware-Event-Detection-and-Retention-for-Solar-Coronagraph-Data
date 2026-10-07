@@ -1,0 +1,12 @@
+frame,confidence,pressure_before,mode,storage_before,storage_after,downlink
+diff_001.png,0.0000,0.00,DROP,0,0,
+diff_002.png,0.3180,0.00,REDUCED,0,2,
+diff_003.png,1.0000,0.20,FULL,2,5,
+diff_004.png,0.8964,0.50,REDUCED,5,7,
+diff_005.png,0.5986,0.70,DROP,7,7,
+diff_006.png,0.7484,0.70,SUMMARY,7,8,
+diff_007.png,0.6604,0.80,DROP,8,8,
+diff_008.png,0.8910,0.80,SUMMARY,8,5,DOWNLINK
+diff_009.png,0.2443,0.50,SUMMARY,5,6,
+diff_010.png,0.0038,0.60,DROP,6,6,
+diff_011.png,0.0518,0.60,SUMMARY,6,7,
