@@ -146,28 +146,28 @@ This provides a hardware-in-the-loop representation of resource constraints with
 
 The final test sequence contained 12 original LASCO images, producing 11 frame-to-frame differences.
 ```
-**Retention Decisions**
+Retention Decisions
 Retention Mode	Number
 FULL	           1
 REDUCED	         2
 SUMMARY          4
 DROP	           4
-Total	           11
+Total	          11
 
-**Simulated Storage**
+Simulated Storage
 Metric	              Result
 Baseline storage cost	  33
 Adaptive storage cost	  11
 Simulated reduction	   66.7%
 
-**Physical File Storage**
-Metric	Result
-Original PNG size	4.082 MB
-Retained data size	0.518 MB
-Physical reduction	87.3%
-Reduction ratio	7.89×
+Physical File Storage
+Metric	               Result
+Original PNG size	    4.082 MB
+Retained data size	  0.518 MB
+Physical reduction	   87.3%
+Reduction ratio	      7.89×
 
-**High-Confidence Preservation**
+High-Confidence Preservation
 
 Using the project's confidence threshold:
 
