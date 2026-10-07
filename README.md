@@ -193,3 +193,14 @@ Using the project's confidence threshold:
 - UART / Serial Communication
 - Image Processing
 - Resource-aware Decision Making
+
+ # Results Visualization
+
+The repository contains plots showing:
+```
+- Confidence score versus frame
+- Retention mode versus frame
+- Storage pressure versus frame
+- Physical storage comparison
+```
+These visualizations provide a direct view of how the adaptive controller responds to changing observations and resource availability.
